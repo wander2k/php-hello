@@ -1,0 +1,488 @@
+--- webapp/vendor/phpunit/phpunit/tests/Regression/GitHub/2158/Issue2158Test.php
++++ PHP_CodeSniffer
+@@ -6,7 +6,7 @@
+      */
+     public function testSomething()
+     {
+-        include(__DIR__ . '/constant.inc');
++        include __DIR__ . '/constant.inc';
+         $this->assertTrue(true);
+     }
+ 
+
+--- webapp/vendor/phpunit/phpunit/tests/Regression/GitHub/74/Issue74Test.php
++++ PHP_CodeSniffer
+@@ -3,7 +3,7 @@
+ {
+     public function testCreateAndThrowNewExceptionInProcessIsolation()
+     {
+-        require_once __DIR__ . '/NewException.php';
++        include_once __DIR__ . '/NewException.php';
+         throw new NewException('Testing GH-74');
+     }
+ }
+
+--- webapp/vendor/phpunit/phpunit/tests/_files/Inheritance/InheritanceA.php
++++ PHP_CodeSniffer
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-require_once(__DIR__ . '/InheritanceB.php');
++require_once __DIR__ . '/InheritanceB.php';
+ 
+ class InheritanceA extends InheritanceB
+ {
+
+--- webapp/vendor/phpunit/phpunit/tests/_files/BankAccountTest.php
++++ PHP_CodeSniffer
+@@ -10,7 +10,6 @@
+ 
+ /**
+  * Tests for the BankAccount class.
+- *
+  */
+ class BankAccountTest extends PHPUnit_Framework_TestCase
+ {
+
+--- webapp/vendor/phpunit/phpunit/tests/_files/ClassWithToString.php
++++ PHP_CodeSniffer
+@@ -10,7 +10,6 @@
+ 
+ /**
+  * A class with a __toString() method.
+- *
+  */
+ class ClassWithToString
+ {
+
+--- webapp/vendor/phpunit/phpunit/tests/_files/ExceptionTest.php
++++ PHP_CodeSniffer
+@@ -93,7 +93,9 @@
+     {
+     }
+ 
+-    /** @expectedException Class */
++    /**
++ * @expectedException Class 
++*/
+     public function testSingleLine()
+     {
+     }
+
+--- webapp/vendor/phpunit/phpunit/tests/_files/RequirementsTest.php
++++ PHP_CodeSniffer
+@@ -140,8 +140,8 @@
+     }
+ 
+     /**
+-     * @requires	  extension	  spl
+-     * @requires	  OS	  .*
++     * @requires      extension      spl
++     * @requires      OS      .*
+      */
+     public function testSpace()
+     {
+
+--- webapp/vendor/phpunit/phpunit/tests/_files/BankAccountTest.test.php
++++ PHP_CodeSniffer
+@@ -10,7 +10,6 @@
+ 
+ /**
+  * Tests for the BankAccount class.
+- *
+  */
+ class BankAccountWithCustomExtensionTest extends PHPUnit_Framework_TestCase
+ {
+
+--- webapp/vendor/phpunit/phpunit/tests/_files/Book.php
++++ PHP_CodeSniffer
+@@ -10,7 +10,6 @@
+ 
+ /**
+  * A book.
+- *
+  */
+ class Book
+ {
+
+--- webapp/vendor/phpunit/phpunit/tests/_files/BankAccount.php
++++ PHP_CodeSniffer
+@@ -14,7 +14,6 @@
+ 
+ /**
+  * A bank account.
+- *
+  */
+ class BankAccount
+ {
+
+--- webapp/vendor/phpunit/phpunit/tests/_files/CoverageMethodOneLineAnnotationTest.php
++++ PHP_CodeSniffer
+@@ -2,7 +2,9 @@
+ 
+ class CoverageMethodOneLineAnnotationTest extends PHPUnit_Framework_TestCase
+ {
+-    /** @covers CoveredClass::publicMethod */
++    /**
++ * @covers CoveredClass::publicMethod 
++*/
+     public function testSomething()
+     {
+         $o = new CoveredClass;
+
+--- webapp/vendor/phpunit/phpunit/tests/_files/Author.php
++++ PHP_CodeSniffer
+@@ -10,7 +10,6 @@
+ 
+ /**
+  * An author.
+- *
+  */
+ class Author
+ {
+
+--- webapp/vendor/phpunit/phpunit/tests/Util/TestTest.php
++++ PHP_CodeSniffer
+@@ -28,87 +28,87 @@
+     public function testGetExpectedException()
+     {
+         $this->assertArraySubset(
+-          ['class' => 'FooBarBaz', 'code' => null, 'message' => ''],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testOne')
++            ['class' => 'FooBarBaz', 'code' => null, 'message' => ''],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testOne')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'Foo_Bar_Baz', 'code' => null, 'message' => ''],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testTwo')
++            ['class' => 'Foo_Bar_Baz', 'code' => null, 'message' => ''],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testTwo')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'Foo\Bar\Baz', 'code' => null, 'message' => ''],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testThree')
++            ['class' => 'Foo\Bar\Baz', 'code' => null, 'message' => ''],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testThree')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'ほげ', 'code' => null, 'message' => ''],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testFour')
++            ['class' => 'ほげ', 'code' => null, 'message' => ''],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testFour')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'Class', 'code' => 1234, 'message' => 'Message'],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testFive')
++            ['class' => 'Class', 'code' => 1234, 'message' => 'Message'],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testFive')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'Class', 'code' => 1234, 'message' => 'Message'],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testSix')
++            ['class' => 'Class', 'code' => 1234, 'message' => 'Message'],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testSix')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'Class', 'code' => 'ExceptionCode', 'message' => 'Message'],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testSeven')
++            ['class' => 'Class', 'code' => 'ExceptionCode', 'message' => 'Message'],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testSeven')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'Class', 'code' => 0, 'message' => 'Message'],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testEight')
++            ['class' => 'Class', 'code' => 0, 'message' => 'Message'],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testEight')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'Class', 'code' => ExceptionTest::ERROR_CODE, 'message' => ExceptionTest::ERROR_MESSAGE],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testNine')
++            ['class' => 'Class', 'code' => ExceptionTest::ERROR_CODE, 'message' => ExceptionTest::ERROR_MESSAGE],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testNine')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'Class', 'code' => null, 'message' => ''],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testSingleLine')
++            ['class' => 'Class', 'code' => null, 'message' => ''],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testSingleLine')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'Class', 'code' => My\Space\ExceptionNamespaceTest::ERROR_CODE, 'message' => My\Space\ExceptionNamespaceTest::ERROR_MESSAGE],
+-          PHPUnit_Util_Test::getExpectedException('My\Space\ExceptionNamespaceTest', 'testConstants')
++            ['class' => 'Class', 'code' => My\Space\ExceptionNamespaceTest::ERROR_CODE, 'message' => My\Space\ExceptionNamespaceTest::ERROR_MESSAGE],
++            PHPUnit_Util_Test::getExpectedException('My\Space\ExceptionNamespaceTest', 'testConstants')
+         );
+ 
+         // Ensure the Class::CONST expression is only evaluated when the constant really exists
+         $this->assertArraySubset(
+-          ['class' => 'Class', 'code' => 'ExceptionTest::UNKNOWN_CODE_CONSTANT', 'message' => 'ExceptionTest::UNKNOWN_MESSAGE_CONSTANT'],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testUnknownConstants')
++            ['class' => 'Class', 'code' => 'ExceptionTest::UNKNOWN_CODE_CONSTANT', 'message' => 'ExceptionTest::UNKNOWN_MESSAGE_CONSTANT'],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testUnknownConstants')
+         );
+ 
+         $this->assertArraySubset(
+-          ['class' => 'Class', 'code' => 'My\Space\ExceptionNamespaceTest::UNKNOWN_CODE_CONSTANT', 'message' => 'My\Space\ExceptionNamespaceTest::UNKNOWN_MESSAGE_CONSTANT'],
+-          PHPUnit_Util_Test::getExpectedException('My\Space\ExceptionNamespaceTest', 'testUnknownConstants')
++            ['class' => 'Class', 'code' => 'My\Space\ExceptionNamespaceTest::UNKNOWN_CODE_CONSTANT', 'message' => 'My\Space\ExceptionNamespaceTest::UNKNOWN_MESSAGE_CONSTANT'],
++            PHPUnit_Util_Test::getExpectedException('My\Space\ExceptionNamespaceTest', 'testUnknownConstants')
+         );
+     }
+ 
+     public function testGetExpectedRegExp()
+     {
+         $this->assertArraySubset(
+-          ['message_regex' => '#regex#'],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testWithRegexMessage')
++            ['message_regex' => '#regex#'],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testWithRegexMessage')
+         );
+ 
+         $this->assertArraySubset(
+-          ['message_regex' => '#regex#'],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testWithRegexMessageFromClassConstant')
++            ['message_regex' => '#regex#'],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testWithRegexMessageFromClassConstant')
+         );
+ 
+         $this->assertArraySubset(
+-          ['message_regex' => 'ExceptionTest::UNKNOWN_MESSAGE_REGEX_CONSTANT'],
+-          PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testWithUnknowRegexMessageFromClassConstant')
++            ['message_regex' => 'ExceptionTest::UNKNOWN_MESSAGE_REGEX_CONSTANT'],
++            PHPUnit_Util_Test::getExpectedException('ExceptionTest', 'testWithUnknowRegexMessageFromClassConstant')
+         );
+     }
+ 
+@@ -472,56 +472,68 @@
+ 
+     public function testTestWithSimpleCase()
+     {
+-        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation('/**
++        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation(
++            '/**
+                                                                      * @testWith [1]
+-                                                                     */');
++                                                                     */'
++        );
+         $this->assertEquals([[1]], $result);
+     }
+ 
+     public function testTestWithMultiLineMultiParameterCase()
+     {
+-        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation('/**
++        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation(
++            '/**
+                                                                      * @testWith [1, 2]
+                                                                      * [3, 4]
+-                                                                     */');
++                                                                     */'
++        );
+         $this->assertEquals([[1, 2], [3, 4]], $result);
+     }
+ 
+     public function testTestWithVariousTypes()
+     {
+-        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation('/**
++        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation(
++            '/**
+             * @testWith ["ab"]
+             *           [true]
+             *           [null]
+-         */');
++         */'
++        );
+         $this->assertEquals([['ab'], [true], [null]], $result);
+     }
+ 
+     public function testTestWithAnnotationAfter()
+     {
+-        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation('/**
++        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation(
++            '/**
+                                                                      * @testWith [1]
+                                                                      *           [2]
+                                                                      * @annotation
+-                                                                     */');
++                                                                     */'
++        );
+         $this->assertEquals([[1], [2]], $result);
+     }
+ 
+     public function testTestWithSimpleTextAfter()
+     {
+-        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation('/**
++        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation(
++            '/**
+                                                                      * @testWith [1]
+                                                                      *           [2]
+                                                                      * blah blah
+-                                                                     */');
++                                                                     */'
++        );
+         $this->assertEquals([[1], [2]], $result);
+     }
+ 
+     public function testTestWithCharacterEscape()
+     {
+-        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation('/**
++        $result = PHPUnit_Util_Test::getDataFromTestWithAnnotation(
++            '/**
+                                                                      * @testWith ["\"", "\""]
+-                                                                     */');
++                                                                     */'
++        );
+         $this->assertEquals([['"', '"']], $result);
+     }
+ 
+@@ -530,9 +542,11 @@
+         $this->expectException(PHPUnit_Framework_Exception::class);
+         $this->expectExceptionMessageRegExp('/^The dataset for the @testWith annotation cannot be parsed:/');
+ 
+-        PHPUnit_Util_Test::getDataFromTestWithAnnotation('/**
++        PHPUnit_Util_Test::getDataFromTestWithAnnotation(
++            '/**
+                                                            * @testWith [s]
+-                                                           */');
++                                                           */'
++        );
+     }
+ 
+     public function testTestWithThrowsProperExceptionIfMultiLineDatasetCannotBeParsed()
+@@ -540,10 +554,12 @@
+         $this->expectException(PHPUnit_Framework_Exception::class);
+         $this->expectExceptionMessageRegExp('/^The dataset for the @testWith annotation cannot be parsed:/');
+ 
+-        PHPUnit_Util_Test::getDataFromTestWithAnnotation('/**
++        PHPUnit_Util_Test::getDataFromTestWithAnnotation(
++            '/**
+                                                            * @testWith ["valid"]
+                                                            *           [invalid]
+-                                                           */');
++                                                           */'
++        );
+     }
+ 
+     /**
+@@ -575,7 +591,9 @@
+         );
+     }
+ 
+-    /** @depends Bar */
++    /**
++ * @depends Bar 
++*/
+     public function methodForTestParseAnnotationThatIsOnlyOneLine()
+     {
+         // TODO Remove fixture from test class
+
+--- webapp/vendor/phpunit/phpunit/tests/Util/GlobalStateTest.php
++++ PHP_CodeSniffer
+@@ -25,6 +25,7 @@
+         $this->assertEquals(
+             "require_once '" . $dir . "/ConfigurationTest.php';\n" .
+             "require_once '" . $dir . "/GlobalStateTest.php';\n" .
+-            "require_once 'file://" . $dir . "/XMLTest.php';\n", PHPUnit_Util_GlobalState::processIncludedFilesAsString($files));
++            "require_once 'file://" . $dir . "/XMLTest.php';\n", PHPUnit_Util_GlobalState::processIncludedFilesAsString($files)
++        );
+     }
+ }
+
+--- webapp/vendor/phpunit/phpunit/tests/Util/XMLTest.php
++++ PHP_CodeSniffer
+@@ -26,10 +26,12 @@
+         } catch (Exception $e) {
+         }
+ 
+-        $this->assertNull($e, sprintf(
+-            'PHPUnit_Util_XML::prepareString("\x%02x") should not crash DomDocument',
+-            ord($char)
+-        ));
++        $this->assertNull(
++            $e, sprintf(
++                'PHPUnit_Util_XML::prepareString("\x%02x") should not crash DomDocument',
++                ord($char)
++            )
++        );
+     }
+ 
+     public function charProvider()
+
+--- webapp/vendor/phpunit/phpunit/tests/Framework/TestCaseTest.php
++++ PHP_CodeSniffer
+@@ -591,7 +591,9 @@
+ 
+     public function testCreateMockMocksAllMethods()
+     {
+-        /** @var Mockable $mock */
++        /**
++ * @var Mockable $mock 
++*/
+         $mock = $this->createMock(Mockable::class);
+ 
+         $this->assertNull($mock->foo());
+@@ -600,7 +602,9 @@
+ 
+     public function testCreatePartialMockDoesNotMockAllMethods()
+     {
+-        /** @var Mockable $mock */
++        /**
++ * @var Mockable $mock 
++*/
+         $mock = $this->createPartialMock(Mockable::class, ['foo']);
+ 
+         $this->assertNull($mock->foo());
+@@ -609,7 +613,9 @@
+ 
+     public function testCreatePartialMockCanMockNoMethods()
+     {
+-        /** @var Mockable $mock */
++        /**
++ * @var Mockable $mock 
++*/
+         $mock = $this->createPartialMock(Mockable::class, []);
+ 
+         $this->assertTrue($mock->foo());
+@@ -618,7 +624,9 @@
+ 
+     public function testCreateMockSkipsConstructor()
+     {
+-        /** @var Mockable $mock */
++        /**
++ * @var Mockable $mock 
++*/
+         $mock = $this->createMock(Mockable::class);
+ 
+         $this->assertFalse($mock->constructorCalled);
+@@ -626,7 +634,9 @@
+ 
+     public function testCreateMockDisablesOriginalClone()
+     {
+-        /** @var Mockable $mock */
++        /**
++ * @var Mockable $mock 
++*/
+         $mock = $this->createMock(Mockable::class);
+ 
+         $cloned = clone $mock;
+@@ -635,7 +645,9 @@
+ 
+     public function testConfiguredMockCanBeCreated()
+     {
+-        /** @var Mockable $mock */
++        /**
++ * @var Mockable $mock 
++*/
+         $mock = $this->createConfiguredMock(
+             Mockable::class,
+             [
+
